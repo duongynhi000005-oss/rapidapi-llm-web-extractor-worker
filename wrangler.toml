@@ -1,0 +1,10 @@
+name = "llm-web-extractor-api"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+RAPIDAPI_PROXY_SECRET = "test-secret-change-in-production"
+
+[placement]
+mode = "smart"
