@@ -1,0 +1,14 @@
+{
+  "name": "llm-web-extractor-api",
+  "version": "1.0.0",
+  "description": "High-performance edge API on Cloudflare Workers for RapidAPI: transforms web pages into LLM-ready Markdown and extracts Schema.org JSON-LD and emails.",
+  "main": "worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  },
+  "license": "Apache-2.0"
+}
