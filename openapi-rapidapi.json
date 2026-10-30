@@ -1,0 +1,73 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "LLM-Ready Web-to-Markdown, JSON-LD & Contact Extractor API",
+    "description": "High-performance edge API that transforms any webpage into clean, token-efficient Markdown, extracts Schema.org JSON-LD, OpenGraph tags, and contact emails at sub-100ms latency. Optimized for LLMs, RAG pipelines, and AI Agents.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://llm-web-extractor-api.workers.dev",
+      "description": "Cloudflare Global Edge Production Server"
+    }
+  ],
+  "paths": {
+    "/v1/extract": {
+      "post": {
+        "summary": "Extract Markdown, JSON-LD & Emails from URL",
+        "operationId": "extractUrlPost",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "url": { "type": "string" },
+                  "options": {
+                    "type": "object",
+                    "properties": {
+                      "includeMarkdown": { "type": "boolean", "default": true },
+                      "includeJsonLd": { "type": "boolean", "default": true },
+                      "includeMetadata": { "type": "boolean", "default": true },
+                      "includeEmails": { "type": "boolean", "default": true },
+                      "maxContentLength": { "type": "integer", "default": 50000 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Extraction Successful" }
+        }
+      },
+      "get": {
+        "summary": "Quick URL Extract (GET)",
+        "operationId": "extractUrlGet",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Extraction Successful" }
+        }
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "summary": "Health Check",
+        "operationId": "getHealth",
+        "responses": {
+          "200": { "description": "Service Operational" }
+        }
+      }
+    }
+  }
+}
